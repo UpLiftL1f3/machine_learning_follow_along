@@ -28,7 +28,24 @@ try:
     print(f"File path: {file_path}")
 
     # Load the CSV
-    data = pd.read_csv(file_path)
-    print(data)
+    order_processing_data = pd.read_csv(file_path)
+    print_message(order_processing_data)
 except FileNotFoundError as e:
     print(e)
+
+#! Exporting a DataFrame
+# Get the directory of the current script
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct the file path for the CSV file
+output_file_path = os.path.join(current_script_dir, "exported_car_sales.csv")
+# Export the DataFrame to the file path
+# -> The below code is commented out to prevent recreating the file every time I run the file
+# TODO: car_data.to_csv(output_file_path, index=False)
+# * Read the CSV File
+car_sales_file_path = get_file_path("exported_car_sales.csv")
+car_sales_data = pd.read_csv(car_sales_file_path)
+print_message(car_sales_data)
+
+
+#! Describe Data
+print_message(order_processing_data.dtypes)

@@ -10,7 +10,14 @@ def print_message(message):
     :param message: The message to print, can include f-string formatted values.
     """
     # Get the terminal width
-    terminal_width = os.get_terminal_size().columns
+    # terminal_width = os.get_terminal_size().columns
+
+    try:
+        # Try to get the terminal width
+        terminal_width = os.get_terminal_size().columns
+    except OSError:
+        # Use a default width if running in a non-terminal environment
+        terminal_width = 15
 
     # Print the message
     print(message)
